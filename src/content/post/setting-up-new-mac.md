@@ -58,7 +58,7 @@ TODO
 
 ## Configure Dev Environment
 ### Dotfiles
-- I'm using [dotbot](https://github.com/anishathalye/dotbot) as a dotfiles manager; I find to quite easy to work with
+- I'm using [dotbot](https://github.com/anishathalye/dotbot) as a dotfiles manager; I find it quite easy to work with
 - It uses symlinks to link files from my dotfiles repository to the locations required by my system
 ```zsh
 git clone git@github.com:Amar-Gill/dotfiles.git; cd dotfiles; ./install
@@ -98,31 +98,59 @@ Official recommendation is to *not* use homebrew
 
 - Install [pnpm](); A more performant alternative of `npm` that leverages a local cache for packages
 :::tip
-`pnpm` supports managing Node versions using [pnpm env](https://pnpm.io/cli/env) command as well. Something to consider for your own set up.
+`pnpm` supports managing Node versions as well using the [pnpm env](https://pnpm.io/cli/env) command. Something to consider for your own set up.
 :::
 
-- Golang
-- Rust
-- pyenv
+- Golang programming language and toolchain
+```zsh
+brew install go
+```
+
+- Rust programming language and toolchain
+```zsh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+- [pyenv](https://github.com/pyenv/pyenv); A python version manager
+```zsh
+brew install pyenv
+```
 
 ### Neovim
 - Install Neovim with `brew`
 ```zsh
 brew install neovim
 ```
-- Thanks to `lazy.nvim` the plugins and should auto install when first starting up
-- `mason.nvim` will auto install the language servers
-- Also treesitter syntaxes will auto-install
+- Thanks to the [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager, my plugins will auto install when first starting up
+- The [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) will auto install the language servers as well
+- Treesitter syntaxes will auto-install thanks to the [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) plugin
 - Do a `:healthcheck` to see if anything else is missing in your Neovim environment
 
 ### Docker
-- OrbStack (Docker Desktop alternative)
+- For working with Docker containers I like [OrbStack](https://orbstack.dev/) over Docker Desktop
+```zsh
+brew install orbstack
+```
 
 ## Keyboard Remaps
-- Karabiner Elements -- remap keys as required
-- This will override keyboard modifications made in native MacOS settings
+### Karabiner Elements
+- Use [Karabiner Elements](https://karabiner-elements.pqrs.org/) to remap keys on the Apple Internal Keyboard of your MacBook
+```zsh
+brew install karabiner-elements
+```
+- I don't make many modifications, only the following:
+  - remap `caps_lock` to `left_control`
+  - remap `right_option` to `right_control`
 - Useful when editing with Neovim where the control key is often used
-- vial
+:::important
+Remaps made in Karabiner Elements take precedence over remaps made in native MacOS settings
+:::
+
+### Vial
+- Use [Vial](https://get.vial.today/) to program your external keyboard if it supports QMK firmware
+```zsh
+brew install vial
+```
 
 ## Adjust Dock Hide Delay and Animation
 - The default delay and animation time of the MacOS dock can be adjusted to be instant
