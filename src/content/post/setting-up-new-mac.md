@@ -21,7 +21,7 @@ run `git --version` in the Terminal app to have MacOS prompt you for `xcode-sele
 ```
 - update `.zprofile` for brew PATH variable:
 
-```zsh title=".zprofile"
+```zsh title=".zprofile" ins={1}
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 - open a new terminal and verify with `brew --version` or `which brew`
@@ -57,24 +57,28 @@ TODO
 - [read more about the 1Password SSH agent](https://developer.1password.com/docs/ssh/agent/)
 
 ## Configure Dev Environment
-- retrieve dotfiles from GitHub
+### Dotfiles
+- I'm using [dotbot](https://github.com/anishathalye/dotbot) as a dotfiles manager; I find to quite easy to work with
+- it uses symlinks to link files from my dotfiles repository to the locations required by my system
 ```zsh
-git clone lalala
+git clone git@github.com:Amar-Gill/dotfiles.git; cd dotfiles; ./install
 ```
-- configure command prompt, I'm still using `p10k.zsh` (I know it's no longer being developed)
+
+### Command Prompt
+- I'm still using [p10k.zsh](https://github.com/romkatv/powerlevel10k)
+- I know it's not actively developed any more, but it still works well
 ```zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 ```
 
-### Install Utilities
+### Command Line Utilities
 - [fzf](https://github.com/junegunn/fzf) fuzzy finder utility
 - [ripgrep](https://github.com/BurntSushi/ripgrep) an oxidized alternative for `BSD/GNU grep`
 - [fd](https://github.com/sharkdp/fd) an oxidized alternative for `BSD/GNU find`
 - [tealdear](https://github.com/tealdeer-rs/tealdeer) an oxidized alternative for `tldr`
 - [thefuck](https://github.com/nvbn/thefuck)
-- OrbStack (Docker Desktop alternative)
 
-### `fzf` Command History Integration
+### fzf Command History Integration
 - fzf command history integration IS TODO
 
 ### Languages and Run Times
@@ -95,13 +99,16 @@ brew install neovim
 - also treesitter syntaxes will auto-install
 - do a `:healthcheck` to see if anything else is missing in your Neovim environment
 
+### Docker
+- OrbStack (Docker Desktop alternative)
+
 ## Keyboard Remaps
 - Karabiner Elements -- remap keys as required
 - this will override keyboard modifications made in native MacOS settings
 - useful when editing with Neovim where the control key is often used
+- vial
 
-## Other Goodies
-### Adjust Dock Hide Delay and Animation
+## Adjust Dock Hide Delay and Animation
 - the default delay and animation time of the MacOS dock can be adjusted to be instant
 - open a terminal and execute the following:
 ```zsh
@@ -114,7 +121,8 @@ killall Dock;
 defaults delete com.apple.Dock autohide-delay; killall Dock
 ```
 
-### Useful Apps
+## Window Manager
 - OneMenu (or Rectangle)
+
+## Notes
 - Obsidian
-- vial
