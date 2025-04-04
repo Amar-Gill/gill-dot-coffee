@@ -48,9 +48,9 @@ brew install 1password
 :::important
  Use the prompts by 1Password browser extension to create your SSH key for the most seamless experience
 :::
-- Make sure 1Password SSH agent is enabled, under Settings -> Developer
+- Make sure 1Password SSH agent is enabled, under **1Password > Settings > Developer**
 - Finish configuration by updating `.ssh/config` to use 1Password as an `IdentityAgent`
-```txt title=".ssh/config"
+```txt title=".ssh/config" ins={1-2}
 Host *
 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 ```
@@ -104,9 +104,14 @@ brew install go
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-- [pyenv](https://github.com/pyenv/pyenv); A python version manager
+- [pyenv](https://github.com/pyenv/pyenv); A Python version manager
 ```zsh
 brew install pyenv
+```
+
+- [rbenv](https://rbenv.org/); A Ruby version manager
+```zsh
+brew install rbenv
 ```
 
 ### Neovim
@@ -146,8 +151,9 @@ brew install vial
 ```
 
 ## Instantly Show Dock
-- The default delay and animation time of the MacOS dock can be adjusted to be instant
-- Open a terminal and execute the following:
+- Out of the box, the MacOS dock has a brief delay before it unhides itself when you move your mouse to the edge of the screen
+- There is also an animation which takes up more time as well
+- I like to make the dock reveal itself instantly, which can be done using the following commands in your terminal:
 ```zsh
 defaults write com.apple.dock autohide-delay -float 0;\
 defaults write com.apple.dock autohide-time-modifier -int 0;\
