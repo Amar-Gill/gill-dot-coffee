@@ -19,7 +19,7 @@ run `git --version` in the Terminal app to have MacOS prompt you for `xcode-sele
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
-- Update `.zprofile` for brew PATH variable:
+- Update `.zprofile` to add `brew` to your `PATH`
 
 ```zsh title=".zprofile" ins={1}
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -65,7 +65,7 @@ git clone git@github.com:Amar-Gill/dotfiles.git; cd dotfiles; ./install
 ```
 
 ### Command Prompt
-- I'm still using [p10k.zsh](https://github.com/romkatv/powerlevel10k)
+- I'm using [p10k.zsh](https://github.com/romkatv/powerlevel10k)
 - I know it's not actively developed any more, but it still works well
 ```zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
@@ -152,7 +152,7 @@ Remaps made in Karabiner Elements take precedence over remaps made in native Mac
 brew install vial
 ```
 
-## Adjust Dock Hide Delay and Animation
+## Instantly Show Dock
 - The default delay and animation time of the MacOS dock can be adjusted to be instant
 - Open a terminal and execute the following:
 ```zsh
@@ -166,7 +166,20 @@ defaults delete com.apple.Dock autohide-delay; killall Dock
 ```
 
 ## Window Manager
-- OneMenu (or Rectangle)
+- Currently giving [OneMenu](https://www.withmarko.com/one-menu) a try as my window manager
+- [Rectangle]() is another solid choice
+:::tip
+OneMenu comes with additional features:
+- keyboard cleaning mode
+- system monitoring
+:::
 
-## Notes
-- Obsidian
+## Note Taking
+- [Obsidian](https://obsidian.md/) is my go to note taking app
+- Some reasons why:
+  - Local first
+  - Markdown syntax
+  - Native vim bindings
+```zsh
+brew install obsidian
+```
