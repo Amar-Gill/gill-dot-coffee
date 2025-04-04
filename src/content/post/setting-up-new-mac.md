@@ -80,14 +80,18 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-
   - [thefuck](https://github.com/nvbn/thefuck) correct mistyped console commands
 
 ### fzf Shell Integration
-- I personally use `fzf` to search through my command history pretty often
+- [fzf shell integration](https://junegunn.github.io/fzf/shell-integration/#shell-integration) can augment terminal workflows in useful ways
+- Load the shell script into an `.fzf.sh` file:
 ```zsh
 fzf --zsh > .fzf.sh
 ```
-- Make sure to source `.fzf.sh` in your `.zshrc` file
-- [Learn more](https://junegunn.github.io/fzf/shell-integration/#shell-integration)
+- Then make sure to source `.fzf.sh` in your `.zshrc` file
+```zsh title=".zshrc" ins={1}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+```
+- I personally use `fzf` to search through my command history pretty often, using the `CTRL-R` shortcut
 
-### Languages and Run Times
+### Languages and Runtimes
 - Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm)
 ```zsh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
@@ -96,7 +100,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 Official recommendation is to *not* use homebrew
 :::
 
-- Install [pnpm](); A more performant alternative of `npm` that leverages a local cache for packages
+- Install [pnpm](https://pnpm.io/); A more performant alternative of `npm` that leverages a local cache for packages
 :::tip
 `pnpm` supports managing Node versions as well using the [pnpm env](https://pnpm.io/cli/env) command. Something to consider for your own set up.
 :::
@@ -122,7 +126,7 @@ brew install pyenv
 brew install neovim
 ```
 - Thanks to the [lazy.nvim](https://github.com/folke/lazy.nvim) plugin manager, my plugins will auto install when first starting up
-- The [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) will auto install the language servers as well
+- The [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) plugin will auto install the language servers as well
 - Treesitter syntaxes will auto-install thanks to the [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) plugin
 - Do a `:healthcheck` to see if anything else is missing in your Neovim environment
 
@@ -167,7 +171,7 @@ defaults delete com.apple.Dock autohide-delay; killall Dock
 
 ## Window Manager
 - Currently giving [OneMenu](https://www.withmarko.com/one-menu) a try as my window manager
-- [Rectangle]() is another solid choice
+- [Rectangle](https://rectangleapp.com/) is another solid choice
 :::tip
 OneMenu comes with additional features:
 - keyboard cleaning mode
