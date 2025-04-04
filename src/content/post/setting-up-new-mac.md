@@ -1,8 +1,8 @@
 ---
 title: "Setting up a new MacBook for development"
-description: "toto"
-publishDate: "10 April 2025"
-tags: ["development", "environment", "vim"]
+description: "Common steps I take to set up a new MacBook for software development"
+publishDate: "04 April 2025"
+tags: ["mac", "zsh", "neovim", "security"]
 draft: false
 ---
 ## Install XCode Command Line Tools
@@ -14,7 +14,7 @@ run `git --version` in the Terminal app to have MacOS prompt you for `xcode-sele
 - Afterwards you can install XCode Command Line Tools with `xcode-select --install`
 
 ## Package Manager
-- Install the [homebrew](https://brew.sh/) package manager:
+- Install the [Homebrew](https://brew.sh/) package manager:
 
 ```zsh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -51,10 +51,11 @@ brew install 1password
 - Make sure 1Password SSH agent is enabled, under Settings -> Developer
 - Finish configuration by updating `.ssh/config` to use 1Password as an `IdentityAgent`
 ```txt title=".ssh/config"
-TODO
+Host *
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 ```
 - Now, whenever an application attempts to read your private SSH keys, you will be prompted by the 1Password app to authorize the action
-- [Read more about the 1Password SSH agent](https://developer.1password.com/docs/ssh/agent/)
+- [Read more about the 1Password SSH agent](https://developer.1password.com/docs/ssh/get-started)
 
 ## Configure Dev Environment
 ### Dotfiles
@@ -78,18 +79,6 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-
   - [fd](https://github.com/sharkdp/fd) an oxidized alternative for `BSD/GNU find`
   - [tealdear](https://github.com/tealdeer-rs/tealdeer) an oxidized alternative for `tldr`
   - [thefuck](https://github.com/nvbn/thefuck) correct mistyped console commands
-
-### fzf Shell Integration
-- [fzf shell integration](https://junegunn.github.io/fzf/shell-integration/#shell-integration) can augment terminal workflows in useful ways
-- Load the shell script into an `.fzf.sh` file:
-```zsh
-fzf --zsh > .fzf.sh
-```
-- Then make sure to source `.fzf.sh` in your `.zshrc` file
-```zsh title=".zshrc" ins={1}
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-```
-- I personally use `fzf` to search through my command history pretty often, using the `CTRL-R` shortcut
 
 ### Languages and Runtimes
 - Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm)
@@ -121,7 +110,7 @@ brew install pyenv
 ```
 
 ### Neovim
-- Install Neovim with `brew`
+- Install [Neovim](https://neovim.io/) with `brew`
 ```zsh
 brew install neovim
 ```
