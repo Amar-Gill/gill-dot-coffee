@@ -5,8 +5,7 @@ publishDate: "04 April 2025"
 tags: ["mac", "zsh", "neovim", "security"]
 draft: false
 ---
-## Install XCode Command Line Tools
-- Because Mac lol
+## XCode
 - Start by installing `xcode-select`
 :::tip
 run `git --version` in the Terminal app to have MacOS prompt you for `xcode-select` installation
