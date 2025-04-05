@@ -248,19 +248,32 @@ export const AddressSearch = () => {
 
 Let's add the component as a child of the `<MapContainer>` component to use the control:
 
-```tsx
+```tsx del={12} ins={13}
 // Map.tsx
-<MapContainer>
-  <TileLayer />
-  <AddressSearch />
-</MapContainer>
+import { MapContainer, TileLayer } from "react-leaflet";
+import { CustomControl } from "./custom-control"
+
+const Map = () => {
+  return (
+    <MapContainer className="h-80" center={[51.505, -0.09]} zoom={13}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <CustomControl />
+      <AddressSearch />
+    </MapContainer>
+  );
+};
+
+export default Map;
 ```
 
 :::note
 Depending on the popularity of this post, there might not be credits remaining on the Geoapify free tier. Please use sparingly =]
 :::
 
-TODO render component
+<MapExamples showAddressSearch={true} />
 
 The `GeocoderAutocomplete` class accepts as arguments an `HTMLElement`, the API key, and some optional configurations. Instantiating the class will add the address search component as a child of the `HTMLElement` supplied as the argument.
 

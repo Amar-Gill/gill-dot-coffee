@@ -1,5 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-// import { AddressSearch } from "./LeafletAddressSearch";
+import { AddressSearch } from "./AddressSearch";
 import { LeafletCustomControl } from "./LeafletCustomControl";
 
 type LeafletMapProps = {
@@ -27,7 +27,7 @@ const Map: React.FC<LeafletMapProps> = ({
         </Marker>
       )}
       {showBasicControl && <LeafletCustomControl />}
-      {/* {showAddressSearch && <AddressSearch />} */}
+      {showAddressSearch && <AddressSearch />}
     </MapContainer>
   );
 };
