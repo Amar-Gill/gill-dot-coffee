@@ -14,7 +14,7 @@ export const AddressSearch = () => {
       onAdd: function() {
         const el = DomUtil.create("div");
 
-        el.className = "relative minimal round-borders";
+        el.className = "relative";
 
         el.addEventListener("click", (e) => {
           e.stopPropagation();
