@@ -1,13 +1,10 @@
 ---
-layout: "@/layouts/BlogPost"
 title: Build An Address Lookup Feature With React Leaflet
-publishDate: 10 January 2023
 description: Using the open source LeafletJS package in React to create a map with address search capabilities.
+publishDate: 10 January 2023
 tags: ["react", "leaflet", "gis"]
-draft: false
+draft: true
 ---
-
-import LeafletMap from "src/components/LeafletMap.astro";
 
 ## Add Maps To A Website With Leaflet
 
@@ -23,7 +20,7 @@ Let's begin by rendering a basic map in our React app. Install the required depe
 
 ```bash
 npm i leaflet react-leaflet
-npm i -D @types/leaflet @types/react-leaflet
+npm i -D @types/leaflet
 ```
 
 At the time of writing these are the package versions used:
@@ -78,7 +75,7 @@ This gives us a basic Leaflet map centered on London, England. It comes with a z
 
 Make sure to set a height on the component. In this example I styled it with Tailwind CSS: `className="h-80"`.
 
-<LeafletMap showStaticMarker={true} />
+TODO render component
 
 ## Creating A Custom Control
 
@@ -134,7 +131,7 @@ Add it as a child component of `<MapContainer>`. You should see a pink square in
 </MapContainer>
 ```
 
-<LeafletMap showBasicControl={true} />
+TODO render component
 
 Let's breakdown what is happening:
 
@@ -152,12 +149,12 @@ We now have a React component that can be used with any React Leaflet map by add
 
 Let's make something useful now. We will leverage the [Geoapify Address Autocomplete API](https://www.geoapify.com/address-autocomplete) to add address search functionality to our map. The free tier generously provides 3000 credits for use daily. We will use the [Geocoder Autocomplete](https://github.com/geoapify/geocoder-autocomplete) package which handles making API calls, and rendering of the search suggestions on the page for us.
 
-<aside className="info">
-  There is a [react-geocoder-autocomplete](https://github.com/geoapify/react-geocoder-autocomplete)
-  package available as well. We will *not* be using this package. Because the Leaflet custom control
-  API works by returning an `HTMLElement` from the `onAdd` method, as shown in the example above
-  using an `HTMLDivElement`.
-</aside>
+:::note
+There is a [react-geocoder-autocomplete](https://github.com/geoapify/react-geocoder-autocomplete)
+package available as well. We will *not* be using this package. Because the Leaflet custom control
+API works by returning an `HTMLElement` from the `onAdd` method, as shown in the example above
+using an `HTMLDivElement`.
+:::
 
 Before we proceed, you will need to visit the [Geoapify](https://myprojects.geoapify.com/login) platform and register so you can obtain an API key.
 
@@ -238,11 +235,11 @@ Let's add the component as a child of the `<MapContainer>` component to use the 
 </MapContainer>
 ```
 
-<aside className="caution mb-5">
-  Depending on the popularity of this post, there might not be credits remaining on the Geoapify
-  free tier. Please use sparingly =]
-</aside>
-<LeafletMap showAddressSearch={true} />
+:::note
+Depending on the popularity of this post, there might not be credits remaining on the Geoapify free tier. Please use sparingly =]
+:::
+
+TODO render component
 
 The `GeocoderAutocomplete` class accepts as arguments an `HTMLElement`, the API key, and some optional configurations. Instantiating the class will add the address search component as a child of the `HTMLElement` supplied as the argument.
 
@@ -250,9 +247,9 @@ Like in the previous example, we add styles to the `HTMLElement`. The `minimal` 
 
 The Autocomplete component can [listen to a number of events](https://github.com/geoapify/geocoder-autocomplete#geocoder-autocomplete-events). We use the `select` event to change the map view when a suggestion is selected.
 
-<aside className="info">
+:::note
 The `click` and `dblclick` event handlers are used to stop click events bubbling up to the root `<MapContainer>` element. You might want this behaviour if you have `click` event handlers on the `<MapContainer>` component itself. For example, the map could have an event handler that creates a `<Marker>` on the clicked location, then sets the map view to that location.
-</aside>
+:::
 
 ## Optimization
 
