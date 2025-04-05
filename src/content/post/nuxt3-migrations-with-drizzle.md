@@ -23,9 +23,9 @@ This will work for a [Nuxt](https://nuxt.com/) 3 application deployed to [Vercel
 
 In this example we use [Turso](https://turso.tech/) as our hosted database provider. It should work the same for other hosted database providers such as [PlanetScale](https://planetscale.com/) or [Neon](https://neon.tech/).
 
-<aside className="info">
-  Nuxt is at version 3.9 at the time of publishing.
-</aside>
+:::note
+Nuxt is at version 3.9 at the time of publishing.
+:::
 
 ## Prerequisites
 
@@ -53,14 +53,6 @@ export default defineNuxtConfig({
   },
   hooks: {
     async 'build:before'() {
-      if (process.env.NODE_ENV === 'development') {
-        consola.box(
-          'Skipping migrations in dev mode.\n\n
-          Run `db:push` script to use latest schema.'
-        );
-        return;
-      }
-
       console.info('Migrating database...');
 
       const client = createClient({
@@ -84,13 +76,12 @@ export default defineNuxtConfig({
 
 Things to note:
 - as this handler runs before Nuxt is initialized, we access our Turso environment variables through `process.env` instead of `runtimeConfig`
-- we exit the handler early during development and instead rely on db push to apply schema changes to the database
 - make sure to use the same migrations folder that you specify in your `drizzle.config.ts` file
 - the process fails with exit code 1 if the migration fails, so your application will not get deployed without the required database changes
 
-<aside className="info">
-  Drizzle will connect to Turso on each deployment, but only new migration scripts will be applied.
-</aside>
+:::note
+Drizzle will connect to Turso on each deployment, but only new migration scripts will be applied.
+:::
 
 ## Method 2: Nuxt Prepare Module
 
@@ -114,14 +105,6 @@ import { createClient } from '@libsql/client';
 import consola from 'consola';
 
 export default defineNuxtPrepareHandler(async () => {
-  if (process.env.NODE_ENV === 'development') {
-    consola.box(
-      'Skipping migrations in dev mode.\n\n
-      Run `db:push` script to use latest schema.'
-    );
-    return {};
-  }
-
   console.info('Migrating database...');
 
   const client = createClient({
