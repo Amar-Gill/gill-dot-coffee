@@ -1,5 +1,5 @@
 ---
-title: Setting Up Neovim For Astro Development
+title: Setting up Neovim for Astro development
 description: The settings and plugins I use to build Astro websites.
 publishDate: January 31, 2023
 tags: ["astro", "neovim"]

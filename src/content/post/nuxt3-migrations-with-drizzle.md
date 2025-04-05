@@ -1,5 +1,5 @@
 ---
-title: Automatic Migrations in Nuxt 3 with Drizzle
+title: Automatic migrations in Nuxt 3 with Drizzle
 description: Apply migrations on each deployment of your Nuxt 3 application using Drizzle Kit.
 publishDate: December 30, 2023
 tags: ["nuxt", "vue", "drizzle", "turso", "database"]
