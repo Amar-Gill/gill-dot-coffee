@@ -69,7 +69,10 @@ git clone git@github.com:Amar-Gill/dotfiles.git; cd dotfiles; ./install
 ```zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 ```
-- look into [Starship](https://starship.rs/) as another good choice
+- Look into [Starship](https://starship.rs/) as another good choice
+```zsh
+curl -sS https://starship.rs/install.sh | sh
+```
 
 ### Command Line Utilities
 - The following can be installed with `brew`
@@ -84,9 +87,6 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-
 ```zsh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 ```
-:::important
-Official recommendation is to *not* use homebrew
-:::
 
 - Install [pnpm](https://pnpm.io/); A more performant alternative of `npm` that leverages a local cache for packages
 :::tip
