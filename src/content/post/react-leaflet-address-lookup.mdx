@@ -6,6 +6,8 @@ tags: ["react", "leaflet", "gis"]
 draft: true
 ---
 
+import MapContainer from '../../components/leaflet/MapContainer.astro'
+
 ## Add Maps To A Website With Leaflet
 
 [Leaflet](https://leafletjs.com/) is an open source JavaScript package for adding interactive maps into your app or webpage. It has a small footprint yet is fully featured, and has a thriving community of [plugins](https://leafletjs.com/plugins.html) to choose from.
@@ -40,8 +42,8 @@ Visit the [Leaflet Quick Start Guide](https://leafletjs.com/examples/quick-start
 ```tsx
 <link
   rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-  integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
   crossOrigin=""
 />
 ```
@@ -75,7 +77,7 @@ This gives us a basic Leaflet map centered on London, England. It comes with a z
 
 Make sure to set a height on the component. In this example I styled it with Tailwind CSS: `className="h-80"`.
 
-TODO render component
+<MapContainer showStaticMarker={true} />
 
 ## Creating A Custom Control
 
@@ -131,7 +133,7 @@ Add it as a child component of `<MapContainer>`. You should see a pink square in
 </MapContainer>
 ```
 
-TODO render component
+<MapContainer showBasicControl={true} />
 
 Let's breakdown what is happening:
 

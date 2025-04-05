@@ -1,0 +1,22 @@
+---
+interface Props {
+	showStaticMarker?: boolean;
+	showBasicControl?: boolean;
+	showAddressSearch?: boolean;
+}
+
+const {
+	showStaticMarker = false,
+	showBasicControl = false,
+	showAddressSearch = false,
+} = Astro.props;
+
+import Map from "./Map";
+---
+
+<Map
+	showStaticMarker={showStaticMarker}
+	showBasicControl={showBasicControl}
+	showAddressSearch={showAddressSearch}
+	client:only="react"
+/>
