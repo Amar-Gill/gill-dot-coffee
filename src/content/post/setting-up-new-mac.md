@@ -58,18 +58,18 @@ Host *
 
 ## Configure Dev Environment
 ### Dotfiles
-- I'm using [dotbot](https://github.com/anishathalye/dotbot) as a dotfiles manager; I find it quite easy to work with
-- It uses symlinks to link files from my dotfiles repository to the locations required by my system
+- I'm using [dotbot](https://github.com/anishathalye/dotbot) as a dotfiles manager
+- It works by symlinking files from my `/dotfiles` repository to the locations required by my system
 ```zsh
 git clone git@github.com:Amar-Gill/dotfiles.git; cd dotfiles; ./install
 ```
 
 ### Command Prompt
-- I'm using [p10k.zsh](https://github.com/romkatv/powerlevel10k)
-- I know it's not actively developed any more, but it still works well
+- I'm using [p10k.zsh](https://github.com/romkatv/powerlevel10k), a tried and true zsh theme
 ```zsh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
 ```
+- look into [Starship](https://starship.rs/) as another good choice
 
 ### Command Line Utilities
 - The following can be installed with `brew`
@@ -80,7 +80,7 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-
   - [thefuck](https://github.com/nvbn/thefuck) correct mistyped console commands
 
 ### Languages and Runtimes
-- Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm)
+- Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) to manage NodeJS installations
 ```zsh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
 ```
@@ -90,7 +90,7 @@ Official recommendation is to *not* use homebrew
 
 - Install [pnpm](https://pnpm.io/); A more performant alternative of `npm` that leverages a local cache for packages
 :::tip
-`pnpm` supports managing Node versions as well using the [pnpm env](https://pnpm.io/cli/env) command. Something to consider for your own set up.
+`pnpm` supports managing NodeJS versions as well using the [pnpm env](https://pnpm.io/cli/env) command. Something to consider for your own set up.
 :::
 
 - Golang programming language and toolchain
