@@ -125,13 +125,32 @@ export const LeafletCustomControl = () => {
 
 Add it as a child component of `<MapContainer>`. You should see a pink square in the top right corner of the map, with a click event handler.
 
-```tsx
+```tsx del={12-16} ins={17}
 // Map.tsx
-<MapContainer>
-  <TileLayer />
-  <CustomControl />
-</MapContainer>
+import { MapContainer, TileLayer } from "react-leaflet";
+import { CustomControl } from "./custom-control"
+
+const Map = () => {
+  return (
+    <MapContainer className="h-80" center={[51.505, -0.09]} zoom={13}>
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <Marker position={[51.505, -0.09]}>
+        <Popup>
+          A pretty CSS3 popup. <br /> Easily customizable.
+        </Popup>
+      </Marker>
+      <CustomControl />
+    </MapContainer>
+  );
+};
+
+export default Map;
 ```
+
+<br />
 
 <MapContainer showBasicControl={true} />
 
