@@ -2,8 +2,9 @@
 title: Build An Address Lookup Feature With React Leaflet
 description: Using the open source LeafletJS package in React to create a map with address search capabilities.
 publishDate: 10 January 2023
+updatedDate: 05 April 2025
 tags: ["react", "leaflet", "gis"]
-draft: true
+draft: false
 ---
 
 import MapExamples from '../../components/leaflet/MapExamples.astro'
@@ -29,11 +30,11 @@ At the time of writing these are the package versions used:
 
 | Package                         | Version |
 | ------------------------------- | ------: |
-| react                           |  18.0.0 |
-| react-dom                       |  18.0.0 |
-| leaflet                         |   1.9.3 |
-| react-leaflet                   |   4.2.0 |
-| @geoapify/geocoder-autocomplete |   1.5.1 |
+| react                           |  19.1.0 |
+| react-dom                       |  19.1.0 |
+| leaflet                         |   1.9.4 |
+| react-leaflet                   |   5.0.0 |
+| @geoapify/geocoder-autocomplete |   2.1.0 |
 
 The [React Leaflet Installation Guide](https://react-leaflet.js.org/docs/start-installation/) directs us to setup the base Leaflet package first. That involves setting up the stylesheet.
 
@@ -210,7 +211,7 @@ export const AddressSearch = () => {
     onAdd: function () {
       const el = DomUtil.create("div");
 
-      el.className = "relative minimal";
+      el.className = "relative";
 
       el.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -277,9 +278,9 @@ Depending on the popularity of this post, there might not be credits remaining o
 
 The `GeocoderAutocomplete` class accepts as arguments an `HTMLElement`, the API key, and some optional configurations. Instantiating the class will add the address search component as a child of the `HTMLElement` supplied as the argument.
 
-Like in the previous example, we add styles to the `HTMLElement`. The `minimal` CSS class is from the stylesheet provided by the Geocoder Autocomplete package. The `HTMLElement` container must have a CSS display property of `relative` or `absolute`.
+Like in the previous example, we add styles to the `HTMLElement`. The `HTMLElement` container must have a CSS display property of `relative` or `absolute`. The globally imported stylesheet will style the rendered input element with zero configuration.
 
-The Autocomplete component can [listen to a number of events](https://github.com/geoapify/geocoder-autocomplete#geocoder-autocomplete-events). We use the `select` event to change the map view when a suggestion is selected.
+The Autocomplete component can [listen to a number of events](https://github.com/geoapify/geocoder-autocomplete/tree/master?tab=readme-ov-file#events). We use the `select` event to change the map view when a suggestion is selected.
 
 :::note
 The `click` and `dblclick` event handlers are used to stop click events bubbling up to the root `<MapContainer>` element. You might want this behaviour if you have `click` event handlers on the `<MapContainer>` component itself. For example, the map could have an event handler that creates a `<Marker>` on the clicked location, then sets the map view to that location.
