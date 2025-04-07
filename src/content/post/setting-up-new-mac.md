@@ -82,6 +82,10 @@ curl -sS https://starship.rs/install.sh | sh
   - [tealdear](https://github.com/tealdeer-rs/tealdeer) an oxidized alternative for `tldr`
   - [thefuck](https://github.com/nvbn/thefuck) correct mistyped console commands
 
+```zsh
+brew install fzf ripgrep fd tealdeer thefuck
+```
+
 ### Languages and Runtimes
 - Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) to manage NodeJS installations
 ```zsh
