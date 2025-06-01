@@ -22,7 +22,7 @@
 		"@geoapify/geocoder-autocomplete": "^2.1.0",
 		"@tailwindcss/vite": "4.0.0-beta.8",
 		"@types/react": "^19.1.0",
-		"@types/react-dom": "^19.1.1",
+		"@types/react-dom": "^19.1.5",
 		"astro": "5.1.5",
 		"astro-expressive-code": "^0.39.0",
 		"astro-icon": "^1.1.5",
