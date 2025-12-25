@@ -2,39 +2,44 @@
 title: Deploy to multiple subdomains on Cloudflare Workers
 description: todo
 publishDate: 28 December 2025
-tags: ["Cloudflare Workers", "CICD"]
+tags: ["cloudflare-workers", "cicd"]
 draft: true
 ---
 
-## What are we building?
+## What Are We Building?
 
 In this guide we will purchase a custom domain from the Cloudflare Registrar and use it to host a web application on the Cloudflare Workers serverless compute platform.
 
-We'll configure the application to be deployed on separate environments each with their own subdomain:
+We'll configure the application to be deployed on separate environments each with their own subdomain.
 
-  - dev.my-domain.com
-  - staging.my-domain.com
-  - prod.my-domain.com
+Lastly, we will set up CICD on each domain via Git integration, where each Worker will have it's own Git branch that will trigger automatic deployment on new commits being pushed to GitHub.
 
-Lastly, we set up CICD on each domain via Git integration, where the `staging` branch will deploy to `staging.my-domain.com` and the `main` branch will deploy to `prod.my-domain.com`.
+Refer to the following table for a summary.
+
+
+| Domain | Worker Name | Git Branch |
+|--------|------------|-------------|
+| dev.my-domain.com | dev-my-tanstack-start-app | dev |
+| staging.my-domain.com | staging-my-tanstack-start-app | staging |
+| prod.my-domain.com | prod-my-tanstack-start-app | main |
 
 
 :::note
 I am not employed by or affiliated with Cloudflare. I'm a web developer that enjoys using the platform and I want to help others do the same.
 :::
 
-## Get your domain
+## Get Your Domain
 
-Head over to the [Cloudflare Domain Registrar]() and purchase your domain. We'll assume for this guide it's `my-domain.com`.
+Head over to the [Cloudflare Domain Registrar](https://dash.cloudflare.com/?to=/:account/registrar/register) and purchase your domain. We'll assume for this guide it's `my-domain.com`.
 
-## Initialize your web application
+## Initialize Your Web Application
 
-Visit the [frameworks guides]() and choose your web application framework. For this guide we'll use Tanstack Start:
+Visit the [framework guides](https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/) and choose your web application framework. For this guide we'll use Tanstack Start:
 ```
 pnpm create cloudflare@latest my-tanstack-start-app --framework=tanstack-start
 ```
 
-## Configure your Wrangler file
+## Configure Your Wrangler File
 
 Your app will come scaffolded with a minimal `wrangler.jsonc` file. Edit this file to configure your custom subdomain deployments.
 ```json ins={12-37}
@@ -78,7 +83,7 @@ Your app will come scaffolded with a minimal `wrangler.jsonc` file. Edit this fi
 }
 ```
 
-## Deploy to each environment
+## Deploy To Each Environment
 
 First we must build the application: `pnpm run build`
 
@@ -97,18 +102,14 @@ The name of each worker will be the top level `name` field in your wrangler file
 You can revise the node scripts of your `package.json` also:
 TODO
 
-## Configure Git integration
+## Configure Git Integration
 
 At the time of writing, Git integration cannot be done through the Wrangler file. So we must visit the Cloudflare developer dashboard.
 
-## Going Further with bindings
+## Going Further With Bindings
 
 TODO infra is bindings
 
 ## Conclusion
 
 TODO
-
-
-
-
