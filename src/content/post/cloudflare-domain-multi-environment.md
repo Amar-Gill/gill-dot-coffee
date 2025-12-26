@@ -2,7 +2,7 @@
 title: Deploy to multiple subdomains on Cloudflare Workers
 description: todo
 publishDate: 28 December 2025
-tags: ["cloudflare-workers", "cicd"]
+tags: ["cloudflare-workers", "tanstack-start", "react"]
 draft: true
 ---
 
@@ -12,16 +12,16 @@ In this guide we will purchase a custom domain from the Cloudflare Registrar and
 
 We'll configure the application to be deployed on separate environments each with their own subdomain.
 
-Lastly, we will set up CICD on each domain via Git integration, where each Worker will have it's own Git branch that will trigger automatic deployment on new commits being pushed to GitHub.
+Lastly, we will set up CICD on each domain via Git integration, where each Worker will have it's own Git branch that will trigger automatic deployment when new commits are pushed to GitHub.
 
 Refer to the following table for a summary.
 
 
 | Domain | Worker Name | Git Branch |
 |--------|------------|-------------|
-| dev.my-domain.com | dev-my-tanstack-start-app | dev |
-| staging.my-domain.com | staging-my-tanstack-start-app | staging |
-| prod.my-domain.com | prod-my-tanstack-start-app | main |
+| dev.my-domain.com | my-tanstack-start-app-development | dev |
+| staging.my-domain.com | my-tanstack-start-app-staging | staging |
+| prod.my-domain.com | my-tanstack-start-app-production | main |
 
 
 :::note
@@ -34,7 +34,7 @@ Head over to the [Cloudflare Domain Registrar](https://dash.cloudflare.com/?to=/
 
 ## Initialize Your Web Application
 
-Visit the [framework guides](https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/) and choose your web application framework. For this guide we'll use Tanstack Start:
+Visit the [framework guides](https://developers.cloudflare.com/workers/framework-guides/web-apps/tanstack-start/) and choose your web application framework. For this guide we'll use Tanstack Start.
 ```
 pnpm create cloudflare@latest my-tanstack-start-app --framework=tanstack-start
 ```
@@ -42,7 +42,8 @@ pnpm create cloudflare@latest my-tanstack-start-app --framework=tanstack-start
 ## Configure Your Wrangler File
 
 Your app will come scaffolded with a minimal `wrangler.jsonc` file. Edit this file to configure your custom subdomain deployments.
-```json ins={12-37}
+```jsonc ins={13-38}
+// wrangler.jsonc
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "my-tanstack-start-app",
@@ -55,7 +56,7 @@ Your app will come scaffolded with a minimal `wrangler.jsonc` file. Edit this fi
 		"enabled": true
 	},
   "env": {
-    "dev": {
+    "development": {
       "routes": [
         {
           "pattern": "dev.my-domain.com",
@@ -85,22 +86,56 @@ Your app will come scaffolded with a minimal `wrangler.jsonc` file. Edit this fi
 
 ## Deploy To Each Environment
 
-First we must build the application: `pnpm run build`
+TanStack Start uses the [Cloudflare Vite Plugin](https://developers.cloudflare.com/workers/vite-plugin/) which helps integrate Vite applications with the Cloudflare Workers runtime. It utilizes the new [Vite Environments API](https://vite.dev/guide/api-environment).
 
-Then deploy it via command line with the wrangler CLI tool:
-1. `wrangler deploy --env dev`
-1. `wrangler deploy --env staging`
-1. `wrangler deploy --env production`
+To deploy your application to each environment, run the following commands from the command line:
+
+```
+CLOUDFLARE_ENV=development pnpm run build && pnpm dlx wrangler deploy
+```
+
+<br />
+
+```
+CLOUDFLARE_ENV=staging pnpm run build && pnpm dlx wrangler deploy
+```
+
+<br />
+
+```
+CLOUDFLARE_ENV=production pnpm run build && pnpm dlx wrangler deploy
+```
 
 This will deploy three separate Cloudflare Workers applications to your account.
 
-The name of each worker will be the top level `name` field in your wrangler file, prefixed with the environment name. In this example:
-- `dev-my-tanstack-start-app`
-- `staging-my-tanstack-start-app`
-- `prod-my-tanstack-start-app`
+The name of each worker will be the top level `name` field in your wrangler file, suffixed with the environment name.
+- `my-tanstack-start-app-development`
+- `my-tanstack-start-app-staging`
+- `my-tanstack-start-app-production`
 
-You can revise the node scripts of your `package.json` also:
-TODO
+You can revise the node scripts of your `package.json` if you like.
+
+```json del={11} ins={12-14}
+// package.json
+{
+	"name": "my-tanstack-start-app",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev --port 3000",
+		"build": "vite build",
+		"serve": "vite preview",
+		"test": "vitest run",
+		"deploy": "pnpm run build && wrangler deploy",
+		"deploy:dev": "CLOUDFLARE_ENV=development pnpm run build && wrangler deploy",
+		"deploy:staging": "CLOUDFLARE_ENV=staging pnpm run build && wrangler deploy",
+		"deploy:prod": "CLOUDFLARE_ENV=production pnpm run build && wrangler deploy",
+		"preview": "pnpm run build && vite preview",
+		"cf-typegen": "wrangler types"
+	},
+  // ...rest of package.json
+}
+```
 
 ## Configure Git Integration
 
