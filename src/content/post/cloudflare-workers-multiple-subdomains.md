@@ -1,7 +1,7 @@
 ---
-title: Deploy to multiple subdomains on Cloudflare Workers
-description: todo
-publishDate: 28 December 2025
+title: Deploy an app to multiple subdomains on Cloudflare Workers
+description: Step by step guide on how to deploy a TanStack Start application on Cloudflare Workers using multiple subdomains each with it's own environment
+publishDate: 30 December 2025
 tags: ["cloudflare-workers", "tanstack-start", "react"]
 draft: true
 ---
@@ -39,7 +39,7 @@ Visit the [framework guides](https://developers.cloudflare.com/workers/framework
 pnpm create cloudflare@latest my-tanstack-start-app --framework=tanstack-start
 ```
 
-## Configure Your Wrangler File
+## Configure Your Subdomains By Environment
 
 Your app will come scaffolded with a minimal `wrangler.jsonc` file. Edit this file to configure your custom subdomain deployments.
 ```jsonc ins={13-38}
@@ -139,6 +139,10 @@ The name of each worker will be the top level `name` field in your Wrangler file
 
 Each Worker will be accessible on the domain configured in the Wrangler file.
 
+![Worker deployments on Cloudflare](https://content.gill.coffee/posts/cloudflare-workers-multiple-subdomains/image-a.png)
+
+Read more about [Cloudflare Workers Environments](https://developers.cloudflare.com/workers/wrangler/environments/).
+
 ## Configure Git Integration
 
 In the Cloudflare Workers platform, each environment uses it's own Worker. And therefore each Worker will have it's own "production branch".
@@ -155,14 +159,100 @@ Under the Worker settings page, look under the Build section to connect your Git
 | my-tanstack-start-app-development | dev | CLOUDFLARE_ENV=development pnpm run build | npx wrangler deploy |
 
 
+Read more about [Cloudflare Workers Git Integration](https://developers.cloudflare.com/workers/ci-cd/builds/git-integration/).
+
 :::important
 Leave the "Builds for non-production branches" setting unchecked. This is to make sure only pushes to the specified branch will trigger a deployment. Otherwise pushes to your staging branch will trigger builds for your production worker.
 :::
 
+![Configure git integration for staging worker](https://content.gill.coffee/posts/cloudflare-workers-multiple-subdomains/image-b.png)
+
+![Configure git integration for production worker](https://content.gill.coffee/posts/cloudflare-workers-multiple-subdomains/image-c.png)
+
+![Configure git integration for dev worker](https://content.gill.coffee/posts/cloudflare-workers-multiple-subdomains/image-d.png)
+
+
 ## Going Further With Bindings and Vars
 
-With your separate Worker environments set up now, you can start to leverage the rest of the Cloudflare developer infrastructure. Refer to [Wrangler documentation]() on available infrastructure services. You can also supply separate environment variables as required too. Environment variables and infrastructure bindings will be set up when the Wrangler file change gets pushed to your repository, and the automatic build on Cloudflare completes.
+With your separate Worker environments set up now, you can add environment variables and Cloudflare infrastructure bindings that are unique to each environment.
+
+In the following example, we add a unique `VITE_APP_NAME` environment variable and provision a unique R2 storage bucket to each Worker with our Wrangler configuration.
+
+The environment variables and storage buckets will be provisioned automatically once you push the `wrangler.jsonc` change to the remote repository and the automatic build completes.
+
+Read more about [configuring Wrangler](https://developers.cloudflare.com/workers/wrangler/configuration/).
+
+```jsonc ins={21-29, 38-46, 55-63}
+// wrangler.jsonc
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "my-tanstack-start-app",
+	"compatibility_date": "2025-09-02",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"main": "@tanstack/react-start/server-entry",
+	"observability": {
+		"enabled": true
+	},
+  "env": {
+    "development": {
+      "routes": [
+        {
+          "pattern": "dev.my-domain.com",
+          "custom_domain": true
+        }
+      ],
+      "vars": {
+        "VITE_APP_NAME": "My Tanstack Start App Development"
+      },
+      "r2_buckets": [
+        {
+          "binding": "STORAGE_BUCKET",
+          "bucket_name": "dev-bucket"
+        }
+      ]
+    },
+    "staging": {
+      "routes": [
+        {
+          "pattern": "staging.my-domain.com",
+          "custom_domain": true
+        }
+      ],
+      "vars": {
+        "VITE_APP_NAME": "My Tanstack Start App Staging"
+      },
+      "r2_buckets": [
+        {
+          "binding": "STORAGE_BUCKET",
+          "bucket_name": "staging-bucket"
+        }
+      ]
+    },
+    "production": {
+      "routes": [
+        {
+          "pattern": "prod.my-domain.com",
+          "custom_domain": true
+        }
+      ],
+      "vars": {
+        "VITE_APP_NAME": "My Tanstack Start App Production"
+      },
+      "r2_buckets": [
+        {
+          "binding": "STORAGE_BUCKET",
+          "bucket_name": "prod-bucket"
+        }
+      ]
+    }
+  }
+}
+```
 
 ## Conclusion
 
-The Cloudflare Workers platform is powerful servless compute platform, that allows for declarative infrastructure provisioning with Wrangler. I also like how I can purchase a domain directly from the dashboard, and set up multiple subdomains for a full-stack application, each with it's own separate environment.
+The Cloudflare Workers platform is powerful serverless compute platform, that allows for declarative infrastructure provisioning with Wrangler.
+
+When you purchase your domain through the Cloudflare registrar, you can set up subdomains on separate environments for your full stack app as we have shown. This is useful when launching a SaaS product where you need separate production and staging environments.
