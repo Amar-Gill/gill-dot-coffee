@@ -11,25 +11,37 @@ import { menuLinks } from "@/site.config";
 			class="inline-flex items-center grayscale hover:filter-none sm:relative sm:inline-block"
 			href="/"
 		>
+			<!-- TODO Why can't I import this from @/public/icon.svg?  -->
 			<svg
 				aria-hidden="true"
-				class="me-3 h-10 w-6 sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-12"
+				class="me-3 h-16 w-10 sm:absolute sm:-start-18 sm:me-0 sm:h-20 sm:w-12"
 				fill="none"
 				focusable="false"
-				viewBox="0 0 272 480"
+				viewBox="0 0 650 900"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<title>Logo</title>
+				<!-- Mug body -->
 				<path
-					d="M181.334 93.333v-40L226.667 80v40l-45.333-26.667ZM136.001 53.333 90.667 26.667v426.666L136.001 480V53.333Z"
-					fill="#B04304"></path>
+					fill="#53C68C"
+					d="M41 430c0-35 104-60 234-60s234 25 234 60v420c0 35-104 60-234 60S41 885 41 850V430Z"
+				></path>
+
+				<!-- Mug rim / coffee surface -->
 				<path
-					d="m136.001 119.944 45.333-26.667 45.333 26.667-45.333 26.667-45.333-26.667ZM90.667 26.667 136.001 0l45.333 26.667-45.333 26.666-45.334-26.666ZM181.334 53.277l45.333-26.666L272 53.277l-45.333 26.667-45.333-26.667ZM0 213.277l45.333-26.667 45.334 26.667-45.334 26.667L0 213.277ZM136 239.944l-45.333-26.667v53.333L136 239.944Z"
-					fill="#FF5D01"></path>
+					fill="#FF5D01"
+					d="M275 470c-117 0-208-20-208-50s91-50 208-50 208 20 208 50-91 50-208 50Z"></path>
+
+				<!-- Mug handle -->
 				<path
-					d="m136 53.333 45.333-26.666v120L226.667 120V80L272 53.333V160l-90.667 53.333v240L136 480V306.667L45.334 360V240l45.333-26.667v53.334L136 240V53.333Z"
-					fill="#53C68C"></path>
-				<path d="M45.334 240 0 213.334v120L45.334 360V240Z" fill="#B04304"></path>
+					fill="#53C68C"
+					d="M509 500c40 0 80 20 80 80v140c0 60-40 80-80 80v-40c20 0 40-10 40-40V580c0-30-20-40-40-40v-40Z"
+				></path>
+
+				<!-- Steam wisps -->
+				<path
+					fill="#B04304"
+					d="M130 180c0-42 8-69 16-104s16-69 16-126c0 57 8 92 16 126s16 62 16 104-8 69-16 104-16 69-16 126c0-57-8-92-16-126s-16-62-16-104Zm117-69c0-42 8-69 16-104s16-69 16-126c0 57 8 92 16 126s16 62 16 104-8 69-16 104-16 69-16 126c0-57-8-92-16-126s-16-62-16-104Zm117 69c0-42 8-69 16-104s16-69 16-126c0 57 8 92 16 126s16 62 16 104-8 69-16 104-16 69-16 126c0-57-8-92-16-126s-16-62-16-104Z"
+				></path>
 			</svg>
 			<span class="text-xl font-bold sm:text-2xl">gill.coffee</span>
 		</a>
