@@ -2,7 +2,7 @@
 title: Deploy an app to multiple subdomains on Cloudflare Workers
 description: Step by step guide on how to deploy a TanStack Start application on Cloudflare Workers using multiple subdomains each with it's own environment
 publishDate: 30 December 2025
-tags: ["cloudflare-workers", "tanstack-start", "react"]
+tags: ["cloudflare-workers", "tanstack-start", "react", "ci-cd", "serverless"]
 draft: false
 ---
 
