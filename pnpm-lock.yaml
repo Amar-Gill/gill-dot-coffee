@@ -130,8 +130,8 @@ importers:
         specifier: ^3.0.4
         version: 3.0.4
       '@types/leaflet':
-        specifier: ^1.9.17
-        version: 1.9.17
+        specifier: ^1.9.20
+        version: 1.9.20
       '@types/mdast':
         specifier: ^4.0.4
         version: 4.0.4
@@ -1433,8 +1433,8 @@ packages:
   '@types/hast@3.0.4':
     resolution: {integrity: sha512-WPs+bbQw5aCj+x6laNGWLH3wviHtoCv/P3+otBhbOhJgG8qtpdAMlTCxLtsTWA7LH1Oh/bFCHsBn0TPS5m30EQ==}
 
-  '@types/leaflet@1.9.17':
-    resolution: {integrity: sha512-IJ4K6t7I3Fh5qXbQ1uwL3CFVbCi6haW9+53oLWgdKlLP7EaS21byWFJxxqOx9y8I0AP0actXSJLVMbyvxhkUTA==}
+  '@types/leaflet@1.9.20':
+    resolution: {integrity: sha512-rooalPMlk61LCaLOvBF2VIf9M47HgMQqi5xQ9QRi7c8PkdIe0WrIi5IxXUXQjAdL0c+vcQ01mYWbthzmp9GHWw==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -5208,7 +5208,7 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  '@types/leaflet@1.9.17':
+  '@types/leaflet@1.9.20':
     dependencies:
       '@types/geojson': 7946.0.16
 
