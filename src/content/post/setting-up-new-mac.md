@@ -80,11 +80,21 @@ curl -sS https://starship.rs/install.sh | sh
   - [ripgrep](https://github.com/BurntSushi/ripgrep) an oxidized alternative for `BSD/GNU grep`
   - [fd](https://github.com/sharkdp/fd) an oxidized alternative for `BSD/GNU find`
   - [tealdear](https://github.com/tealdeer-rs/tealdeer) an oxidized alternative for `tldr`
-  - [thefuck](https://github.com/nvbn/thefuck) correct mistyped console commands
 
 ```zsh
-brew install fzf ripgrep fd tealdeer thefuck
+brew install fzf ripgrep fd tealdeer
 ```
+
+### Configuring Shell History
+The following line in my zshrc file sets up fzf shell integration.
+
+```zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+```
+
+By pressing `<ctrl>-r` it lists previous shell commands and allows you to fuzzy search over them. From there you can execute the command again or make modifications as needed before executing. It's a useful feature to have for a terminal first work flow.
+
+You can take it a step further by installing [Atuin](https://atuin.sh/).
 
 ### Languages and Runtimes
 - Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) to manage NodeJS installations
@@ -126,6 +136,16 @@ brew install neovim
 - The [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) plugin will auto install the language servers as well
 - Treesitter syntaxes will auto-install thanks to the [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) plugin
 - Do a `:healthcheck` to see if anything else is missing in your Neovim environment
+
+### Dev Environment Features
+
+Hitting `<ctrl>-t` will start a fuzzy search for the files recursively in the current working directory. Useful to easily get file paths into a shell command you are preparing.
+
+Key aliases I use often (beyond commonly configured ones you might already use):
+
+- `gsv`
+- `vf`
+- `vrg`
 
 ### Docker
 - For working with Docker containers I like [OrbStack](https://orbstack.dev/) over Docker Desktop
