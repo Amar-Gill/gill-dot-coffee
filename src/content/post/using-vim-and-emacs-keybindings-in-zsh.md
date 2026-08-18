@@ -3,7 +3,7 @@ title: Using vim and emacs keybindings in zsh
 description: "Configuring you zsh session to use emacs and vim keybindings and a guide to some core features"
 publishDate: 17 August 2026
 tags: ["zsh", "vim", "emacs"]
-draft: true
+draft: false
 ---
 
 ## Why Understand Different Keybind Modes
