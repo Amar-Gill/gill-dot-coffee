@@ -80,11 +80,32 @@ curl -sS https://starship.rs/install.sh | sh
   - [ripgrep](https://github.com/BurntSushi/ripgrep) an oxidized alternative for `BSD/GNU grep`
   - [fd](https://github.com/sharkdp/fd) an oxidized alternative for `BSD/GNU find`
   - [tealdear](https://github.com/tealdeer-rs/tealdeer) an oxidized alternative for `tldr`
-  - [thefuck](https://github.com/nvbn/thefuck) correct mistyped console commands
 
 ```zsh
-brew install fzf ripgrep fd tealdeer thefuck
+brew install fzf ripgrep fd tealdeer
 ```
+
+### Configuring fzf Shell Integration
+The following line in my zshrc file sets up fzf shell integration.
+
+```zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+```
+
+Hitting <kbd>ctrl + r</kbd> will run the fzf search program on your command history.
+
+From there you can execute the command again or make modifications as needed before executing. It's a useful feature to have for a terminal first work flow.
+
+Read about other useful features in the [official documentation](https://junegunn.github.io/fzf/).
+
+You can take it a step further by installing [Atuin](https://atuin.sh/).
+
+### Improved Command History Search with Atuin
+[Atuin](https://atuin.sh/) takes working with command history a step further by storing command history in a local sqlite database. Effectively it lets you retain command history indefinitely; among other useful features. It also uses the <kbd>ctrl + r</kbd> to start fuzzy searching through history.
+
+Follow [installation instructions](https://docs.atuin.sh/latest/guide/installation/) on this page.
+
+The default built in command history size is limited. You may increase the built in command history size but it can impact zsh start up performance. Whereas Atuin is known for its high performance and minimal impact on start up performance.
 
 ### Languages and Runtimes
 - Install [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm) to manage NodeJS installations
@@ -107,9 +128,9 @@ brew install go
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-- [pyenv](https://github.com/pyenv/pyenv); A Python version manager
+- [uv](https://docs.astral.sh/uv/); A Python package and project manager
 ```zsh
-brew install pyenv
+brew install uv
 ```
 
 - [rbenv](https://rbenv.org/); A Ruby version manager
@@ -126,6 +147,17 @@ brew install neovim
 - The [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim) plugin will auto install the language servers as well
 - Treesitter syntaxes will auto-install thanks to the [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) plugin
 - Do a `:healthcheck` to see if anything else is missing in your Neovim environment
+
+### Useful Aliases
+These are some key aliases I use often, beyond commonly configured ones you might already use.
+
+
+| Alias | Command | Description |
+|-------|---------|-------------|
+| `gsv` | `git status -s \| awk '{print $2}' \| fzf \| xargs nvim` | Run fzf against changed files in a git repository and open the selected file in nvim. |
+| `vf` | `nvim -c 'Telescope find_files'` | Launch nvim in the current directory and automatically start telescope fuzzy finder for file names. |
+| `vrg` | `nvim -c 'Telescope live_grep'` | Launch nvim in the current directory and automatically start telescope fuzzy finder for word search using grep. |
+
 
 ### Docker
 - For working with Docker containers I like [OrbStack](https://orbstack.dev/) over Docker Desktop
